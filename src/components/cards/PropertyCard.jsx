@@ -25,13 +25,16 @@ const PropertyCard = props => {
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
         <CardActionArea>
-          <CardMedia component="img" height="140" image={images[0]} alt={propertyName} />
+          <CardMedia component="img" height="185" image={images[0]} alt={propertyName} />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              ${price}
+            <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "bold" }}>
+              ${new Intl.NumberFormat("en-US").format(price)}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {numberOfBed} bds | {numberOfBathroom} ba | {area} sqft - {homeType} {dealType}
+            <Typography variant="body3" color="text.secondary">
+              {homeType} {dealType}
+            </Typography>
+            <Typography variant="body1" color="text.primary">
+              <span style={{ fontWeight: "bold" }}>{numberOfBed}</span> bds | <span style={{ fontWeight: "bold" }}>{numberOfBathroom}</span> ba | <span style={{ fontWeight: "bold" }}>{area}</span> sqft
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {address.street}, {address.city}, {address.state}, {address.zipCode}

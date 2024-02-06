@@ -14,6 +14,9 @@ export const theme = createTheme({
           paddingRight: "16px" // MUI default padding
         }
       }
+    },
+    typography: {
+      fontFamily: ["Dosis", "Arial", "sans-serif"].join(",")
     }
   }
 })
