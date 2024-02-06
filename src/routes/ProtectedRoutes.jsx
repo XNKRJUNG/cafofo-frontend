@@ -10,7 +10,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<Properties />} />
-        <Route path="/properties/1" element={<PropertyCard />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
