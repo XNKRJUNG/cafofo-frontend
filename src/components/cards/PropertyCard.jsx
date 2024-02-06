@@ -1,13 +1,26 @@
 import * as React from "react"
-import { Card, CardActionArea, CardContent, CardMedia, Typography, Grid } from "@mui/material"
+import { useState } from "react"
+import { Box, Card, CardActionArea, CardContent, CardMedia, Typography, Grid, IconButton } from "@mui/material"
 import { styled } from "@mui/system"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import FavoriteIcon from "@mui/icons-material/Favorite"
 
 const CustomCard = styled(Card)({
-  maxWidth: 345 // Adjust based preference
+  maxWidth: 345, // Adjust based on preference
+  position: "relative", // Set position relative for absolute positioning of the IconButton
+  margin: "auto" // Center the card if the grid's item doesn't fill the entire width
 })
 
 const PropertyCard = props => {
   const { images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
+
+  // To Favorite the property
+  const [isFavorited, setIsFavorited] = useState(false)
+
+  const toggleFavorite = () => {
+    setIsFavorited(!isFavorited)
+  }
+
   return (
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
@@ -25,6 +38,29 @@ const PropertyCard = props => {
             </Typography>
           </CardContent>
         </CardActionArea>
+        <Box position="absolute" top={1} right={1}>
+          <IconButton
+            onClick={toggleFavorite}
+            aria-label="add to favorites"
+            sx={{
+              "&:hover": {
+                backgroundColor: "transparent"
+              }
+            }}
+          >
+            {isFavorited ? (
+              <FavoriteIcon color="error" sx={{ stroke: "grey", strokeWidth: 1 }} />
+            ) : (
+              <FavoriteBorderIcon
+                sx={{
+                  color: "#ffffff",
+                  stroke: "grey",
+                  strokeWidth: 1
+                }}
+              />
+            )}
+          </IconButton>
+        </Box>
       </CustomCard>
     </Grid>
   )
