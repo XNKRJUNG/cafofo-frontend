@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import ErrorPage from "../pages/Error/ErrorPage"
-import HomePage from "../pages/Home/HomePage"
-import Properties from "../pages/Properties/Properties"
-import ForgotPasswordPage from "../pages/FogotPassword/ForgotPasswordPage"
-import RegisterPage from "../pages/Register/RegisterPage"
-import LoginPage from "../pages/Login/LoginPage"
+import HomePage from "../pages/home/HomePage"
+import Properties from "../pages/properties/Properties"
+import LoginPage from "../pages/login/LoginPage"
+import RegisterPage from "../pages/register/RegisterPage"
+import ForgotPasswordPage from "../pages/fogotPassword/ForgotPasswordPage"
+import ErrorPage from "../pages/error/ErrorPage"
 
 function App() {
   return (
