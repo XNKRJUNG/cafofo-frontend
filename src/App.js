@@ -6,7 +6,7 @@ import { theme } from "./theme/GlobalTheme"
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ProtectedRoutes />
+      <ProtectedRoutes/>
     </ThemeProvider>
   )
 }
