@@ -1,5 +1,4 @@
 import React from "react"
-import Navbar from "../../components/navbar/Navbar"
 import SearchBar from "../../components/searchBar/SearchBar"
 import banner from "../../assets/banner.jpg"
 import { Box } from "@mui/material"
@@ -7,7 +6,6 @@ import { Box } from "@mui/material"
 const HomePage = () => {
   return (
     <>
-      <Navbar />
       <Box
         sx={{
           position: "relative", // Needed to position the search bar absolutely within

@@ -1,14 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from "../pages/home/HomePage"
 import Properties from "../pages/properties/Properties"
 import LoginPage from "../pages/login/LoginPage"
 import RegisterPage from "../pages/register/RegisterPage"
 import ForgotPasswordPage from "../pages/fogotPassword/ForgotPasswordPage"
 import ErrorPage from "../pages/error/ErrorPage"
+import Navbar from "../components/navbar/Navbar"
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<Properties />} />
@@ -17,7 +19,7 @@ function App() {
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   )
 }
 
