@@ -1,83 +1,38 @@
 import React from "react"
-import { Card, CardContent, Typography, Button, Grid, Box, Divider } from "@mui/material"
-import { styled } from "@mui/material/styles"
-import ContactAgent from "../makeOffer/ContactAgent"
-
-const CustomCard = styled(Card)(({ theme }) => ({
-  maxWidth: 600 // Set the maximum width of the card
-}))
-
-const TitleTypography = styled(Typography)({
-  fontWeight: "bold"
-})
-
-const SubtitleTypography = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(1)
-}))
-
-const FeatureTypography = styled(Typography)(({ theme }) => ({
-  display: "inline",
-  marginRight: theme.spacing(2)
-}))
-
-const FeatureDivider = styled(Divider)(({ theme }) => ({
-  margin: theme.spacing(1, 0)
-}))
-
-const CustomButton = styled(Button)(({ theme }) => ({
-  margin: theme.spacing(1, 1, 1, 0),
-  borderRadius: 4
-}))
+import { Card, CardContent, Typography, Grid } from "@mui/material"
 
 const RealtyCard = () => {
-  const [openContactAgent, setOpenContactAgent] = React.useState(false)
-
-  const handleOpenContactAgent = () => {
-    setOpenContactAgent(true)
-  }
-
-  const handleCloseContactAgent = () => {
-    setOpenContactAgent(false)
-  }
-
   return (
-    <CustomCard>
-      <CardContent>
-        <TitleTypography variant="h4" gutterBottom>
+    <Card sx={{ maxWidth: 600, mx: "auto" }}>
+      <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <Typography variant="h4" component="div" sx={{ fontWeight: "bold", mb: 2 }}>
           $334,900
-        </TitleTypography>
-        <SubtitleTypography variant="subtitle1">7916 Westfield Dr NE, Cedar Rapids, IA 52402</SubtitleTypography>
-
-        <FeatureDivider />
-
+        </Typography>
+        <Typography variant="subtitle1" sx={{ mb: 3 }}>
+          7916 Westfield Dr NE, Cedar Rapids, IA 52402
+        </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <FeatureTypography variant="body1">5 beds</FeatureTypography>
+          <Grid item xs={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+              5
+            </Typography>
+            <Typography variant="subtitle1">beds</Typography>
           </Grid>
-          <Grid item xs={4}>
-            <FeatureTypography variant="body1">3 baths</FeatureTypography>
+          <Grid item xs={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+              3
+            </Typography>
+            <Typography variant="subtitle1">baths</Typography>
           </Grid>
-          <Grid item xs={4}>
-            <FeatureTypography variant="body1">2,457 sqft</FeatureTypography>
+          <Grid item xs={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+              2,457
+            </Typography>
+            <Typography variant="subtitle1">sqft</Typography>
           </Grid>
         </Grid>
-
-        <FeatureDivider />
-
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box>
-            <CustomButton variant="contained" color="primary">
-              Request a tour
-            </CustomButton>
-            <CustomButton variant="outlined" size="small" onClick={handleOpenContactAgent}>
-              Contact agent
-            </CustomButton>
-            <ContactAgent open={openContactAgent} onClose={handleCloseContactAgent} />
-          </Box>
-        </Box>
       </CardContent>
-    </CustomCard>
+    </Card>
   )
 }
 

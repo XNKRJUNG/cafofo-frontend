@@ -5,12 +5,12 @@ import { styled } from "@mui/material/styles"
 
 const CarouselContainer = styled(Box)(({ theme }) => ({
   position: "relative",
-  width: "50%" // Adjust the width as needed
+  width: "100%" // Adjust the width as needed
 }))
 
 const StyledPaper = styled(Paper)({
   position: "relative",
-  height: 600, // Adjust the height as needed
+  height: 400, // Adjust the height as needed
   overflow: "hidden",
   display: "flex",
   alignItems: "center",
