@@ -17,7 +17,9 @@ function ProtectedRoutes() {
         <Route path="/properties" element={<Properties />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="forgotPassword" element={<ForgotPasswordPage />} />
+        <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+        <Route path="/buy" element={<Properties />} />
+        <Route path="/rent" element={<Properties />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

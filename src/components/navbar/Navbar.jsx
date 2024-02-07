@@ -10,17 +10,7 @@ import logo from "../../assets/logo.png"
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
-  maxWidth: "100%",
-  "::after": {
-    // Add a pseudo-element for the horizontal line
-    content: '""',
-    position: "absolute",
-    bottom: 0, // Position it at the bottom of the Toolbar
-    left: 0,
-    right: 0,
-    height: "1px", // Line thickness
-    backgroundColor: "rgba(0, 0, 0, 0.12)" // Line color, adjust as needed
-  }
+  maxWidth: "100%"
 })
 
 const NavSection = styled("div")({

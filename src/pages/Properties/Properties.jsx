@@ -2,10 +2,12 @@ import React from "react"
 import { Container, Grid } from "@mui/material"
 import PropertyCard from "../../components/cards/PropertyCard"
 import { dummyPropertiesData } from "../../dummy/PropertiesDummy"
+import FilterBy from "../../components/filterBy/FilterBy"
 
 const Properties = () => {
   return (
     <>
+      <FilterBy />
       <Container>
         <div>Properties</div>
         <Grid container spacing={4}>
