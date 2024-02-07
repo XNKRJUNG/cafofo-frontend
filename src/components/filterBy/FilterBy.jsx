@@ -5,11 +5,16 @@ import { styled } from "@mui/material/styles"
 
 const StyledFilterBox = styled(Box)(({ theme }) => ({
   display: "flex",
-  alignItems: "center", // Ensures vertical alignment
+  alignItems: "center",
   flexWrap: "wrap",
   gap: theme.spacing(2),
   justifyContent: "center",
-  padding: theme.spacing(2)
+  padding: theme.spacing(2),
+  position: "sticky", // Add this line
+  top: 0, // Set to the desired distance from the top
+  zIndex: 1000, // Ensure it's above other elements
+  background: "white", // Set a background to ensure content below doesn't show through
+  boxShadow: "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))" // Optional: adds shadow to the sticky box
 }))
 
 const FilterBy = () => {
@@ -58,7 +63,6 @@ const FilterBy = () => {
 
   return (
     <>
-      {/* <hr /> */}
       <StyledFilterBox>
         <TextField id="outlined-basic" label="Search" variant="filled" value={searchText} onChange={handleSearchTextChange} size="small" />
 
