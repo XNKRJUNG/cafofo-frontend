@@ -6,8 +6,9 @@ import RegisterPage from "../pages/register/RegisterPage"
 import ForgotPasswordPage from "../pages/fogotPassword/ForgotPasswordPage"
 import ErrorPage from "../pages/error/ErrorPage"
 import Navbar from "../components/navbar/Navbar"
+import Footer from "../components/footer/Footer"
 
-function App() {
+function ProtectedRoutes() {
   return (
     <BrowserRouter>
       <Navbar />
@@ -19,8 +20,9 @@ function App() {
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
 
-export default App
+export default ProtectedRoutes

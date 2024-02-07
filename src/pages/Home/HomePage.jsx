@@ -1,7 +1,8 @@
 import React from "react"
+import { Box } from "@mui/material"
 import SearchBar from "../../components/searchBar/SearchBar"
 import banner from "../../assets/banner.jpg"
-import { Box } from "@mui/material"
+import Features from "../../components/features/Features"
 
 const HomePage = () => {
   return (
@@ -10,7 +11,7 @@ const HomePage = () => {
         sx={{
           position: "relative", // Needed to position the search bar absolutely within
           flexGrow: 1,
-          height: 500, // Set a fixed height for the banner
+          height: 550, // Set a fixed height for the banner
           width: "100%",
           backgroundImage: `url(${banner})`,
           backgroundPosition: "center",
@@ -21,10 +22,11 @@ const HomePage = () => {
           justifyContent: "center"
         }}
       >
-        {/* Positioning the SearchBar in the center of the banner */}
         <SearchBar />
       </Box>
-      {/* <SearchBar /> */}
+      <Box>
+        <Features />
+      </Box>
     </>
   )
 }
