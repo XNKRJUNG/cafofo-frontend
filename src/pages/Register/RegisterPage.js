@@ -14,6 +14,7 @@ import Radio from "@mui/material/Radio"
 import RadioGroup from "@mui/material/RadioGroup"
 import FormControl from "@mui/material/FormControl"
 import FormLabel from "@mui/material/FormLabel"
+import axios from "axios"
 
 const RegisterPage = () => {
   const navigate = useNavigate()
@@ -21,12 +22,64 @@ const RegisterPage = () => {
   const handleSubmit = event => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      role: data.get("userRole") // This will log "customer" or "owner" based on selection
-    })
+    const userRole = data.get("userRole");
+    const firstName = data.get("firstName");
+    const lastName = data.get("lastName");
+    const email = data.get("email");
+    const password = data.get("password");
+    
+    
+    console.log("insideHandle")
+    console.log(userRole);
+
+    switch (userRole) {
+      case "customer":
+        createCustomer(firstName, lastName, email, password);
+        break;
+      case "owner":
+        createOwner(firstName, lastName, email, password);
+        break;
+      default:
+        console.log("Something went wrong!");
+        break;
+    }
+
   }
+
+  const createOwner = (firstName, lastName, email, password) => {
+    console.log(firstName, lastName, email, password)
+    axios.post("http://localhost:8080/api/v1/auth/register-owner", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+  }).then(response => {
+    alert("CUSTOMER CREATED SUCCESSFULLY!");
+    navigate("/login");
+  
+}).catch(error => {
+  if(error.response.status === 409){
+    alert("EMAIL ALREADY IN USE!")
+  }
+  console.log(error.data)
+})}
+
+  const createCustomer = (firstName, lastName, email, password) => {
+    axios.post("http://localhost:8080/api/v1/auth/register-customer", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+  }).then(response => {
+      alert("CUSTOMER CREATED SUCCESSFULLY!");
+      navigate("/login");
+    
+  }).catch(error => {
+    if(error.response.status === 409){
+      alert("EMAIL ALREADY IN USE!")
+    }
+    console.log(error.data)
+  })}
 
   return (
     <>

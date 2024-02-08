@@ -11,6 +11,7 @@ import Box from "@mui/material/Box"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
+import axios from "axios"
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -18,11 +19,26 @@ const LoginPage = () => {
   const handleSubmit = event => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
+    authenticate(data.get("email"), data.get("password"));
     console.log({
       email: data.get("email"),
       password: data.get("password")
     })
   }
+
+const authenticate = (email, password) => {
+  axios.post("http://localhost:8080/api/v1/auth/authenticate", {
+    email: email,
+    password: password
+}).then(response => {
+  sessionStorage.setItem("token", response.data.token);
+  console.log(sessionStorage.getItem("token"));
+  alert("LOGGED SUCCESSFULLY!");
+  navigate("/");
+}).catch(error => {
+  console.log(error);
+  alert("Invalid email or password!");
+})}
 
   return (
     <>
