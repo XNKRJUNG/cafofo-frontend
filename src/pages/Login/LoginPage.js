@@ -38,8 +38,10 @@ const LoginPage = () => {
         sessionStorage.setItem("token", response.data.token)
         console.log(response.data.token)
         sessionStorage.setItem("emailName", email)
+        sessionStorage.setItem("userId", response.data.userId)
+        sessionStorage.setItem("role", response.data.role)
         // Dispatch setUser action
-        dispatch(setUser({ email: email, isLoggedIn: true }))
+        dispatch(setUser({ email: email, id: response.data.userId, role: response.data.role, isLoggedIn: true }))
         navigate("/")
       })
       .catch(error => {
