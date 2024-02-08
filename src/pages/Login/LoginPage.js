@@ -32,6 +32,8 @@ const authenticate = (email, password) => {
     password: password
 }).then(response => {
   sessionStorage.setItem("token", response.data.token);
+  sessionStorage.setItem("emailName", email);
+  sessionStorage.setItem("role", response.data.role);
   console.log(sessionStorage.getItem("token"));
   alert("LOGGED SUCCESSFULLY!");
   navigate("/");
