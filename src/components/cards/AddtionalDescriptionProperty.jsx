@@ -12,8 +12,8 @@ const AdditionalDescriptionProperty = () => {
   return (
     <Card sx={{ maxWidth: 800, m: "auto" }} elevation={0}>
       <CardContent>
-        <Typography variant="h6" gutterBottom component="div">
-          Property details
+        <Typography variant="h6" gutterBottom component="div" sx={{ fontWeight: "bold" }}>
+          Property Details:
         </Typography>
         <Accordion expanded={expanded} onChange={handleExpandClick}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>

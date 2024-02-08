@@ -8,7 +8,7 @@ import image2 from "../../dummy/images/house4.jpeg"
 import image3 from "../../dummy/images/house3.jpeg"
 import image4 from "../../dummy/images/house2.jpeg"
 import image5 from "../../dummy/images/house5.jpeg"
-import ContactAgentForm from "../../components/makeOffer/ContactAgent"
+import MakeOffer from "../../components/makeOffer/MakeOffer"
 import AdditionalDescriptionProperty from "../../components/cards/AddtionalDescriptionProperty"
 
 const PropertyDetails = () => {
@@ -21,7 +21,7 @@ const PropertyDetails = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h4" component="div">
+          <Typography variant="h4" component="div" sx={{ fontWeight: "bold" }}>
             Property name
           </Typography>
         </Grid>
@@ -29,7 +29,7 @@ const PropertyDetails = () => {
           <ImageCarousel items={images} />
         </Grid>
         <Grid item xs={12} md={4}>
-          <ContactAgentForm />
+          <MakeOffer />
         </Grid>
       </Grid>
       <hr
