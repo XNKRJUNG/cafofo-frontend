@@ -3,7 +3,7 @@ import UserOptions from '../userOptions/userOptions';
 
 const UsersOptions = (props) => {
 
-const {users} = props;
+const {users,fetchData} = props;
 
 const usersItems = users.map((user, index) => {
     return (
@@ -15,6 +15,7 @@ const usersItems = users.map((user, index) => {
             email={user.email}
             role={user.role}
             active={user.active}
+            fetchData={fetchData}
         />
     )
 });
