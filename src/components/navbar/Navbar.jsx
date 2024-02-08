@@ -98,7 +98,7 @@ export default function Navbar() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={() => navigate("/users/1/favroites")}>View Favorite Properties</MenuItem>
-                  <MenuItem>View Offer List</MenuItem>
+                  <MenuItem onClick={() => navigate("/users/1/view-offer-list")}>View Offer List</MenuItem>
                   <MenuItem>Edit Profile</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
