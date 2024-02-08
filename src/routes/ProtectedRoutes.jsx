@@ -7,8 +7,11 @@ import ForgotPasswordPage from "../pages/FogotPassword/ForgotPasswordPage"
 import PropertyDetails from "../pages/Properties/PropertyDetails"
 import FavoritesPage from "../pages/favroite/FavoritesPage"
 import ErrorPage from "../pages/Error/ErrorPage"
+import AdminDashoard from "../pages/adminDashboard/AdminDashboard"
+import AdminDashoardUsers from "../pages/adminDashoardUsers/AdminDashoardUsers"
 import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
+import AdminChangesPassword from "../components/adminChangesPassword/AdminChangesPassword"
 
 const ProtectedRoutes = () => {
   return (
@@ -24,6 +27,9 @@ const ProtectedRoutes = () => {
         <Route path="/rent" element={<Properties />} />
         <Route path="/properties/1" element={<PropertyDetails />} />
         <Route path="/users/1/favroites" element={<FavoritesPage />} />
+        <Route path="/admin-dashboard" element= {<AdminDashoard />} />
+        <Route path="/admin-dashboard/users" element= {<AdminDashoardUsers/>} />
+        <Route path="/admin-dashboard/users/:id/reset-password" element= {<AdminChangesPassword/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

@@ -3,20 +3,23 @@ import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from "@mu
 import HomeIcon from "@mui/icons-material/Home"
 import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
+import { useNavigate } from "react-router-dom"
 
 const drawerWidth = 240
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const itemsList = [
     {
       text: "Dashboard",
       icon: <HomeIcon />,
-      onClick: () => console.log("Dashboard clicked")
+      onClick: () => navigate("/admin-dashboard")
     },
     {
       text: "Users",
       icon: <PeopleIcon />,
-      onClick: () => console.log("Users clicked")
+      onClick: () => navigate("/admin-dashboard/users")
     },
     {
       text: "Settings",
