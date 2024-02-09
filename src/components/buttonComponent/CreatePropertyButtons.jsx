@@ -17,7 +17,8 @@ const CreatePropertyButtons = (props) => {
                 },
             }).then((response) => {
                 console.log(response.data); // handle the response data
-                navigate('-1');
+                alert("PROPERTY DELETED SUCCESSFULLY!");
+                navigate("/owner-dashboard");
             }).catch((error) => {
                 console.error(error); // handle the error
             })

@@ -5,26 +5,30 @@ import OwnerProperties from "../ownerProperties/OwnerProperties";
 import {dummyPropertiesData} from "../../dummy/PropertiesDummy";
 
 const OwnerDashboardProperties = () => {
-
-    const fetchData = async () => {
-        //FECTH THE PROPRESTIES FROM THE BACKEND
-
-        // try {
-        //     const token = sessionStorage.getItem("token");
-        //     const response = await axios.get("http://localhost:8080/api/v1/owners/${id}/properties", {
-        //         headers: {
-        //             Authorization: `Bearer ${token}`,
-        //         },
-        //     });
-        //     // setProperties(response.data);
-        // } catch (error) {
-        //     console.error(error);
-        // }
-    };
-
+    const [property,setProperty] = useState([]);
+    const token = sessionStorage.getItem("token");
+    
     useEffect(() => {
+        
+        const fetchData = async () => {
+            try {
+              
+                const response = await axios.get("http://localhost:8080/api/v1/owners/properties", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setProperty(response.data);
+                        
+            } catch (error) {
+                console.error(error);
+            }
+        }; 
         fetchData();
     }, []);
+   
+
+    console.log("<<Owner dashborad>>"+property);
 
     return (
         <div className="dashBoard" style={{ display: "flex" }}>
@@ -32,7 +36,7 @@ const OwnerDashboardProperties = () => {
                 <OwnerSidebar />
             </div>
             <div style={{ margin: "10px" }}>
-                <OwnerProperties fetchData={fetchData} properties={dummyPropertiesData} />
+                <OwnerProperties fetchData={property} properties={property} />
             </div>
         </div>
     );

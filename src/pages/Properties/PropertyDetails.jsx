@@ -23,9 +23,8 @@ const PropertyDetails = () => {
   // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLnNtaXRoQGV4YW1wbGUuY29tIiwiaWF0IjoxNzA3NDU0NjUyLCJleHAiOjE3MDc0NTYwOTJ9.eylWboPKz1N1OrLBJKmpdXSaVTwgVvyD_psnUrDltP4"
   useEffect(() => {
     const fetchData = async () => {
-        try {
-          console.log(`Fetching data from: http://localhost:8080/api/v1/properties`)
-            // const token = sessionStorage.getItem("token");
+        try {          
+            
             const response = await axios.get("http://localhost:8080/api/v1/properties/"+param.id, {
                 headers: {
                     Authorization: `Bearer ${token}`,
