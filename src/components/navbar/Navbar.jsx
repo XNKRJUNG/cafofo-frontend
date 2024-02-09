@@ -68,9 +68,9 @@ export default function Navbar() {
       <StyledAppBar position="static" elevation={0}>
         <StyledToolbar>
           <NavSection>
-            <StyledButton onClick={() => navigate("/buy")}>Buy</StyledButton>
-            <StyledButton onClick={() => navigate("/rent")}>Rent</StyledButton>
-            <StyledButton onClick={() => navigate("/sell")}>Sell</StyledButton>
+            <StyledButton onClick={() => navigate("/buy/FOR_SALE")}>Buy</StyledButton>
+            <StyledButton onClick={() => navigate("/rent/FOR_RENT")}>Rent</StyledButton>
+            <StyledButton onClick={() => navigate("/sold/SOLD")}>Sell</StyledButton>
           </NavSection>
           <Logo src={logo} alt="Logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }} />
           <NavSection>
