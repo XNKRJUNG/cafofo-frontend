@@ -1,16 +1,29 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Container, Grid, Typography } from "@mui/material"
 import { dummyPropertiesData } from "../../dummy/FavPropertiesDummy"
 import OfferMadeCard from "../../components/cards/OfferMadeCard"
+import { useParams } from "react-router-dom"
+import axios from "axios"
 
 const CustViewOffer = () => {
-  // This would be replaced with actual state management logic to determine favorites
-  const favorites = dummyPropertiesData.filter(property => {
-    console.log(property)
-    return property.isFavorited
-  })
+  const params = useParams();
+  const [offersCard, setOffersCard] = useState([]);
+  const token= sessionStorage.getItem("token");
 
-  console.log(favorites)
+  useEffect(() => {
+    console.log("I am form Offer-List page :"+ params.id);
+    if (params) {
+      axios
+        .get("http://localhost:8080/api/v1/customers/"+params.id+"/offers",
+        {headers:{
+          Authorization: `Bearer ${token}`,
+        },})
+        .then((response) => {
+          setOffersCard(response.data);
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [params.id]);
 
   return (
     <>
@@ -19,15 +32,13 @@ const CustViewOffer = () => {
           List of Offers Made
         </Typography>
         <Grid container spacing={4}>
-          {favorites.length > 0 ? (
-            favorites.map(p => (
+          {offersCard.length > 0 ? (
+            offersCard.map(p => (
               <OfferMadeCard
                 id={p.id}
                 key={p.id}
-                images={p.images}
-                propertyName={p.propertyName} // Assuming each property has a name
-                address={p.address}
-                price={p.price}
+                property={p.propertyDto}
+                offerPrice={p.offerPrice}
                 isFavorited={true} // Since this is the favorites page
               />
             ))
