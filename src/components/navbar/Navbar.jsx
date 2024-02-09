@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../../features/auth/authSlice"
 
 import { styled } from "@mui/material/styles"
-import { Container, Typography, Menu, MenuItem, IconButton } from "@mui/material"
-import AppBar from "@mui/material/AppBar"
-import Toolbar from "@mui/material/Toolbar"
-import Button from "@mui/material/Button"
+import { Container, Typography, Menu, MenuItem, IconButton, AppBar, Toolbar, Button } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import logo from "../../assets/logo.png"
 
@@ -38,13 +35,13 @@ const StyledButton = styled(Button)({
 const StyledAppBar = styled(AppBar)({
   backgroundColor: "white",
   color: "black",
-  maxWidth: "100%"
+  boxShadow: "none" // Updated to remove elevation shadow
 })
 
 export default function Navbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { userEmail, isLoggedIn } = useSelector(state => state.auth)
+  const { userEmail, isLoggedIn, role } = useSelector(state => state.auth)
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -63,14 +60,49 @@ export default function Navbar() {
     navigate("/login")
   }
 
+  // Create a function to render menu items based on role
+  const renderMenuItems = () => {
+    let items = []
+
+    if (role === "CUSTOMER") {
+      items = [
+        <MenuItem key="favorites" onClick={() => navigate("/users/1/favorites")}>
+          View Favorite Properties
+        </MenuItem>,
+        <MenuItem key="offer-list" onClick={() => navigate("/users/1/view-offer-list")}>
+          View Offer List
+        </MenuItem>,
+        <MenuItem key="edit-profile">Edit Profile</MenuItem>
+      ]
+    }
+
+    items.push(
+      <MenuItem key="logout" onClick={handleLogout}>
+        Logout
+      </MenuItem>
+    )
+
+    return items
+  }
+
   return (
     <Container>
-      <StyledAppBar position="static" elevation={0}>
+      <StyledAppBar position="static">
         <StyledToolbar>
           <NavSection>
-            <StyledButton onClick={() => navigate("/buy")}>Buy</StyledButton>
-            <StyledButton onClick={() => navigate("/rent")}>Rent</StyledButton>
-            <StyledButton onClick={() => navigate("/sell")}>Sell</StyledButton>
+            {/* Conditional rendering based on role */}
+            {role !== "ADMIN" && role !== "OWNER" && (
+              <>
+                <StyledButton onClick={() => navigate("/buy")}>Buy</StyledButton>
+                <StyledButton onClick={() => navigate("/rent")}>Rent</StyledButton>
+
+                {/* <StyledButton onClick={() => navigate("/buy/FOR_SALE")}>Buy</StyledButton>
+            <StyledButton onClick={() => navigate("/rent/FOR_RENT")}>Rent</StyledButton>
+            <StyledButton onClick={() => navigate("/sold/SOLD")}>Sell</StyledButton> */}
+         
+              </>
+            )}
+            {role === "CUSTOMER" && <StyledButton onClick={() => navigate("/sell")}>Sell</StyledButton>}
           </NavSection>
           <Logo src={logo} alt="Logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }} />
           <NavSection>
@@ -97,10 +129,7 @@ export default function Navbar() {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => navigate("/users/1/favroites")}>View Favorite Properties</MenuItem>
-                  <MenuItem onClick={() => navigate("/users/1/view-offer-list")}>View Offer List</MenuItem>
-                  <MenuItem>Edit Profile</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  {renderMenuItems()}
                 </Menu>
               </>
             ) : (

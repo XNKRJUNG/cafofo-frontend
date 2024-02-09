@@ -18,7 +18,7 @@ const AdminDashboard = () => {
         const fetchData = async () => {
             try {
                 const token = sessionStorage.getItem("token");
-                const response = await axios.get("http://localhost:8080/api/v1/admin/customers", {
+                const response = await axios.get("http://localhost:8080/api/v1/admin/users", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
