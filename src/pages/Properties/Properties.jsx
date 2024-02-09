@@ -61,6 +61,7 @@ const handleSearch = (filteredData) => {
   return (
     <>
       <FilterBy onSearch={handleSearch}/>
+      <FilterBy onSearch={handleSearch}/>
       <Container>
         <div>Properties</div>
         <Grid container spacing={4}>
