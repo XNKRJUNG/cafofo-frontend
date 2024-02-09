@@ -25,6 +25,7 @@ import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
 
 import ErrorPage from "../pages/Error/ErrorPage"
+import AdminDashboardProperties from "../pages/adminDashsboardProperties/AdminDashboardProperties"
 
 const ProtectedRoutes = () => {
   const { role, isLoggedIn } = useAuth()
@@ -71,6 +72,7 @@ const ProtectedRoutes = () => {
         <Route path="/admin-dashboard" element={viewAdminPageAccess ? <AdminDashoard /> : <Navigate to="/unauthorized" />} />
         <Route path="/admin-dashboard/users" element={viewAdminPageAccess ? <AdminDashoardUsers /> : <Navigate to="/unauthorized" />} />
         <Route path="/admin-dashboard/users/:id/reset-password" element={viewAdminPageAccess ? <AdminChangesPassword /> : <Navigate to="/unauthorized" />} />
+        <Route path="/admin-dashboard/properites-to-be-approved" element={viewAdminPageAccess ? <AdminDashboardProperties /> : <Navigate to="/unauthorized" />} />
 
         <Route path="/owner-dashboard" element={viewOwnerPageAccess ? <OwnerDashboard /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
