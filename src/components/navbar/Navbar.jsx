@@ -93,13 +93,12 @@ export default function Navbar() {
             {/* Conditional rendering based on role */}
             {role !== "ADMIN" && role !== "OWNER" && (
               <>
-                <StyledButton onClick={() => navigate("/buy")}>Buy</StyledButton>
-                <StyledButton onClick={() => navigate("/rent")}>Rent</StyledButton>
+                {/* <StyledButton onClick={() => navigate("/buy")}>Buy</StyledButton>
+                <StyledButton onClick={() => navigate("/rent")}>Rent</StyledButton> */}
 
-                {/* <StyledButton onClick={() => navigate("/buy/FOR_SALE")}>Buy</StyledButton>
-            <StyledButton onClick={() => navigate("/rent/FOR_RENT")}>Rent</StyledButton>
-            <StyledButton onClick={() => navigate("/sold/SOLD")}>Sell</StyledButton> */}
-         
+                <StyledButton onClick={() => navigate("/buy/FOR_SALE")}>Buy</StyledButton>
+                <StyledButton onClick={() => navigate("/rent/FOR_RENT")}>Rent</StyledButton>
+                <StyledButton onClick={() => navigate("/sold/SOLD")}>Sell</StyledButton>
               </>
             )}
             {role === "CUSTOMER" && <StyledButton onClick={() => navigate("/sell")}>Sell</StyledButton>}
