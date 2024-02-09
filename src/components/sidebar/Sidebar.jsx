@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
 import { useNavigate } from "react-router-dom"
+import { Checklist } from "@mui/icons-material"
 
 const drawerWidth = 240
 
@@ -20,6 +21,11 @@ const Sidebar = () => {
       text: "Users",
       icon: <PeopleIcon />,
       onClick: () => navigate("/admin-dashboard/users")
+    },
+    {
+      text: "Property Approval",
+      icon: <Checklist />,
+      onClick: () => navigate("/admin-dashboard/properites-to-be-approved")
     },
     {
       text: "Settings",
