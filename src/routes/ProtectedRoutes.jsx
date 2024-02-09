@@ -58,8 +58,9 @@ const ProtectedRoutes = () => {
         <Route path="/register" element={!isLoggedIn ? <RegisterPage /> : <Navigate to="/" />} />
         <Route path="/forgotPassword" element={!isLoggedIn ? <ForgotPasswordPage /> : <Navigate to="/" />} />
 
-        <Route path="/buy" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
-        <Route path="/rent" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/buy/:dealType" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/rent/:dealType" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/sold/:dealType" element={<Properties />} />
 
         <Route path="/properties" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
         <Route path="/properties/:id" element={viewBuyRentPageAccess ? <PropertyDetails /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
@@ -75,8 +76,7 @@ const ProtectedRoutes = () => {
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/edit-property/:id" element= {<EditProperty />} />
-
-        <Route path="*" element={<ErrorPage />} />
+        
       </Routes>
       <Footer />
     </BrowserRouter>
