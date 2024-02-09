@@ -45,7 +45,7 @@ const PropertyCard = props => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <Box position="absolute" top={1} right={1}>
+        {/* <Box position="absolute" top={1} right={1}>
           <IconButton
             onClick={toggleFavorite}
             aria-label="add to favorites"
@@ -67,7 +67,7 @@ const PropertyCard = props => {
               />
             )}
           </IconButton>
-        </Box>
+        </Box> */}
       </CustomCard>
     </Grid>
   )

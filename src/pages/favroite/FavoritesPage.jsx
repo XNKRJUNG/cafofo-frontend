@@ -4,29 +4,38 @@ import PropertyCard from "../../components/cards/PropertyCard"
 import { dummyPropertiesData } from "../../dummy/FavPropertiesDummy"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
 
-const FavoritesPage = (props) => {
-  const params = useParams();
+const FavoritesPage = props => {
+  const dispatch = useDispatch()
+  const { userId } = useSelector(state => state.auth)
+
+  const params = useParams()
   // const navigate = useNavigate();
-  const [favoritesCard, setfavoritesCard] = useState([]);
+  const [favoritesCard, setfavoritesCard] = useState([])
 
-  const token= sessionStorage.getItem("token");
-  const userId= sessionStorage.getItem("userId");
-
+  const token = sessionStorage.getItem("token")
+  // const userId= sessionStorage.getItem("userId");
 
   useEffect(() => {
     if (params) {
       axios
-        .get("http://localhost:8080/api/v1/customers/"+userId+"/favorite-lists",
-        {headers:{
-          Authorization: `Bearer ${token}`,
-        },})
-        .then((response) => {
-          setfavoritesCard(response.data);
+        .get("http://localhost:8080/api/v1/customers/" + userId + "/favorite-lists", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         })
-        .catch((err) => console.log(err.message));
+        .then(response => {
+          const propertiesWithImages = response?.data.map((property, index) => {
+            // Find the corresponding dummy data image by matching IDs
+            property.image = dummyPropertiesData[index].images
+            return property
+          })
+          setfavoritesCard(propertiesWithImages)
+        })
+        .catch(err => console.log(err.message))
     }
-  }, [params.id]);
+  }, [params.id])
 
   return (
     <>
@@ -63,4 +72,3 @@ const FavoritesPage = (props) => {
 }
 
 export default FavoritesPage
-
