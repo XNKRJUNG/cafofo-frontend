@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 
 const CustViewOffer = () => {
-  const params = useParams();
+  
   const [offersCard, setOffersCard] = useState([]);
   const token= sessionStorage.getItem("token");
+  const userId= sessionStorage.getItem("userId");
 
   useEffect(() => {
-    console.log("I am form Offer-List page :"+ params.id);
-    if (params) {
+    if (userId) {
       axios
-        .get("http://localhost:8080/api/v1/customers/"+params.id+"/offers",
+        .get("http://localhost:8080/api/v1/customers/"+userId+"/offers",
         {headers:{
           Authorization: `Bearer ${token}`,
         },})
@@ -23,7 +23,7 @@ const CustViewOffer = () => {
         })
         .catch((err) => console.log(err.message));
     }
-  }, [params.id]);
+  }, [userId]);
 
   return (
     <>
@@ -37,7 +37,7 @@ const CustViewOffer = () => {
               <OfferMadeCard
                 id={p.id}
                 key={p.id}
-                property={p.propertyDto}
+                property={p.property}
                 offerPrice={p.offerPrice}
                 isFavorited={true} // Since this is the favorites page
               />

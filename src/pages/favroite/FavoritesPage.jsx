@@ -11,19 +11,18 @@ const FavoritesPage = (props) => {
   const [favoritesCard, setfavoritesCard] = useState([]);
 
   const token= sessionStorage.getItem("token");
+  const userId= sessionStorage.getItem("userId");
 
 
   useEffect(() => {
-    console.log("I am form Favorite page :"+ params.id);
     if (params) {
       axios
-        .get("http://localhost:8080/api/v1/customers/"+params.id+"/favorite-lists",
+        .get("http://localhost:8080/api/v1/customers/"+userId+"/favorite-lists",
         {headers:{
           Authorization: `Bearer ${token}`,
         },})
         .then((response) => {
           setfavoritesCard(response.data);
-          console.log("Result" + response.data);
         })
         .catch((err) => console.log(err.message));
     }

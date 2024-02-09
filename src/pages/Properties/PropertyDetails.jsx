@@ -19,7 +19,8 @@ const PropertyDetails = () => {
   const [propertyDetail, setPropertyDetail] = useState([]);    
   const param = useParams();
   const token = sessionStorage.getItem("token");
-  console.log(param.id);
+  const userId = sessionStorage.getItem("userId");
+  console.log("Proper Details"+userId);
   // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLnNtaXRoQGV4YW1wbGUuY29tIiwiaWF0IjoxNzA3NDU0NjUyLCJleHAiOjE3MDc0NTYwOTJ9.eylWboPKz1N1OrLBJKmpdXSaVTwgVvyD_psnUrDltP4"
   useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +61,7 @@ console.log(propertyDetail)
           <ImageCarousel items={images} />
         </Grid>
         <Grid item xs={12} md={4}>
-          <MakeOffer />
+          <MakeOffer id={param.id} />
         </Grid>
       </Grid>
       <hr

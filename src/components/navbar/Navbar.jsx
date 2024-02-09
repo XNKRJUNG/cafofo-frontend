@@ -41,9 +41,10 @@ const StyledAppBar = styled(AppBar)({
 export default function Navbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { userEmail, isLoggedIn, role } = useSelector(state => state.auth)
+  const { userEmail, isLoggedIn, role , userId} = useSelector(state => state.auth)
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
+  console.log("login user id: "+ userId);
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget)
@@ -66,10 +67,10 @@ export default function Navbar() {
 
     if (role === "CUSTOMER") {
       items = [
-        <MenuItem key="favorites" onClick={() => navigate("/users/1/favorites")}>
+        <MenuItem key="favorites" onClick={() => navigate("/users/favorites")}>
           View Favorite Properties
         </MenuItem>,
-        <MenuItem key="offer-list" onClick={() => navigate("/users/1/view-offer-list")}>
+        <MenuItem key="offer-list" onClick={() => navigate("/users/view-offer-list")}>
           View Offer List
         </MenuItem>,
         <MenuItem key="edit-profile">Edit Profile</MenuItem>
