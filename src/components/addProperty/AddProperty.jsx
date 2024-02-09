@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, TextField, Select, MenuItem, Button, InputLabel, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const YourFormComponent = () => {
     const [propertyName, setPropertyName] = useState('');
@@ -18,19 +19,70 @@ const YourFormComponent = () => {
     const [dealType, setDealType] = useState('');
     const [area, setArea] = useState('');
     const [image, setImage] = useState('');
+    const param = useParams();
     const navigate = useNavigate();
 
+    const token = sessionStorage.getItem("token");
+  console.log("<<token    >>"+token)
+
+
+
     const handleUpload = () => {
-        // Add your logic for handling form submission
-        //upload: 
+        
         //save it
     };
 
     const handleCreate = () => {
-        // Add your logic for handling form submission
-        //upload: 
-        //save it
-    };
+        const data = {
+            image: [
+                {
+                    path: "1707450671385_Blog-Photos-3-1024x819.png"
+                },
+                {
+                    path: "1707450671397_for-rent-sign-in-front-of-gray-house.jpg"
+                }
+        
+            ]   ,
+            owner: {
+                id: param.id
+            },
+            address:{
+                country: country,
+                state: state ,
+                city: city,
+                street:street,
+                number:number,
+                zip:zip
+            },
+            price: price,
+            numberOfBed: numberOfBed,
+            numberOfBathRoom: numberOfBathRoom,
+            factAndFeatures: factAndFeatures,
+            homeType: homeType,
+            dealType: dealType,
+            area: area,
+            propertyName: propertyName    
+        }    
+        
+        axios
+    .post(`http://localhost:8080/api/v1/properties`, data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    .then((response) => {
+        // Handle successful response here
+        // For example, redirect to another page
+        alert("PROPERTY CREATED SUCCESSFULLY!");
+        navigate("/owner-dashboard");
+    })
+    .catch((error) => {
+        // Handle error here
+        console.error("Error:", error)});
+      
+          
+        };
+    
 
     return (
         
@@ -115,10 +167,11 @@ const YourFormComponent = () => {
             </Grid>
             <Grid item xs={12} container justifyContent="center" alignItems="center">
                 <Button variant="contained" onClick={handleCreate} sx={{ width: '10%', margin:'10px' }}>Add Property</Button>
-                <Button variant="contained" color='error' onClick={()=>{navigate(-1)}} sx={{ width: '10%', margin:'10px' }}>Back</Button>
+                <Button variant="contained" color='error' onClick={() => navigate("/properties")} sx={{ width: '10%', margin:'10px' }}>Back</Button>
             </Grid>
         </Grid>
     );
 };
+
 
 export default YourFormComponent;

@@ -7,24 +7,26 @@ import axios from "axios"
 import { useParams } from "react-router-dom"
 
 const Properties = () => {
-  // const param = useParams();
-  // const [props, setProps] = useState([]);
+
+  
   const [propertyDetail, setPropertyDetail] = useState([]);  
   
+
   const token = sessionStorage.getItem("token");
-  console.log(token)
-  // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLnNtaXRoQGV4YW1wbGUuY29tIiwiaWF0IjoxNzA3NDU0NjUyLCJleHAiOjE3MDc0NTYwOTJ9.eylWboPKz1N1OrLBJKmpdXSaVTwgVvyD_psnUrDltP4"
+  console.log("<<token    >>"+token)
+  
   useEffect(() => {
     const fetchPropertiesData = async () => {
         try {
-          console.log(`Fetching data from: http://localhost:8080/api/v1/properties`)
-            // const token = sessionStorage.getItem("token");
+          
             const response = await axios.get("http://localhost:8080/api/v1/properties", {
+
               headers: {
                 Authorization: `Bearer ${token}`,
             },
           });
           setPropertyDetail(response.data);
+
         } catch (error) {
           console.error(error);
       }
