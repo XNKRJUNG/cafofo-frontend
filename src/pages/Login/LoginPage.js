@@ -1,5 +1,9 @@
 import * as React from "react"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+
+import { setUser } from "../../features/auth/authSlice"
+
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
@@ -15,30 +19,33 @@ import axios from "axios"
 
 const LoginPage = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    authenticate(data.get("email"), data.get("password"));
+    authenticate(data.get("email"), data.get("password"))
     console.log({
       email: data.get("email"),
       password: data.get("password")
     })
   }
 
-const authenticate = (email, password) => {
-  axios.post("http://localhost:8080/api/v1/auth/authenticate", {
-    email: email,
-    password: password
-}).then(response => {
-  sessionStorage.setItem("token", response.data.token);
-  console.log(sessionStorage.getItem("token"));
-  alert("LOGGED SUCCESSFULLY!");
-  navigate("/");
-}).catch(error => {
-  console.log(error);
-  alert("Invalid email or password!");
-})}
+  const authenticate = (email, password) => {
+    axios
+      .post("http://localhost:8080/api/v1/auth/authenticate", { email, password })
+      .then(response => {
+        sessionStorage.setItem("token", response.data.token)
+        sessionStorage.setItem("emailName", email)
+        // Dispatch setUser action
+        dispatch(setUser({ email: email, id: response.data.userId, role: response.data.role, isLoggedIn: true }))
+        navigate("/")
+      })
+      .catch(error => {
+        console.log(error)
+        alert("Invalid email or password!")
+      })
+  }
 
   return (
     <>
