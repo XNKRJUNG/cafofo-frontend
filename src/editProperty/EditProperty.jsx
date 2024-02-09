@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
 import { Grid, TextField, Select, MenuItem, Button, InputLabel, Typography } from '@mui/material';
+import {useLocation} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const YourFormComponent = () => {
-    const [propertyName, setPropertyName] = useState('');
-    const [country, setCountry] = useState('');
-    const [state, setState] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
-    const [number, setNumber] = useState('');
-    const [zip, setZip] = useState('');
-    const [price, setPrice] = useState('');
-    const [numberOfBed, setNumberOfBed] = useState('');
-    const [numberOfBathRoom, setNumberOfBathRoom] = useState('');
-    const [factAndFeatures, setFactAndFeatures] = useState('');
-    const [homeType, setHomeType] = useState('');
-    const [dealType, setDealType] = useState('');
-    const [area, setArea] = useState('');
-    const [image, setImage] = useState('');
+const EditProperty = () => {
+    const location = useLocation();
+    const property = location.state.property;
     const navigate = useNavigate();
 
+    const [propertyName, setPropertyName] = useState(property.propertyName);
+    const [country, setCountry] = useState(property.address.country);
+    const [state, setState] = useState(property.address.state);
+    const [city, setCity] = useState(property.address.city);
+    const [street, setStreet] = useState(property.address.street);
+    const [number, setNumber] = useState(property.address.number);
+    const [zip, setZip] = useState(property.address.zip);
+    const [price, setPrice] = useState(property.price);
+    const [numberOfBed, setNumberOfBed] = useState(property.numberOfBed);
+    const [numberOfBathRoom, setNumberOfBathRoom] = useState(property.numberOfBathroom);
+    const [factAndFeatures, setFactAndFeatures] = useState(property.factAndFeatures);
+    const [homeType, setHomeType] = useState(property.homeType);
+    const [dealType, setDealType] = useState(property.dealType);
+    const [area, setArea] = useState(property.area);
+    const [image, setImage] = useState('');
+
+
     const handleUpload = () => {
-        // Add your logic for handling form submission
+        // Add your logic for handling form upload. Erase old values and save new ones
         //upload: 
         //save it
     };
 
-    const handleCreate = () => {
+    const handleUpdate = () => {
         // Add your logic for handling form submission
         //upload: 
         //save it
@@ -36,7 +41,7 @@ const YourFormComponent = () => {
         
         <Grid container justifyContent="center" alignItems="center" spacing={2} marginTop={1}>
             <Typography variant="h3" align="center">
-                    CREATE PROPERTY
+                    UPDATE PROPERTY
                 </Typography>
             <Grid item xs={12} container justifyContent="center" alignItems="center">
                 <TextField label="Property Name" id="propertyName" value={propertyName} onChange={(e) => setPropertyName(e.target.value)} fullWidth />
@@ -80,7 +85,7 @@ const YourFormComponent = () => {
                 <Grid item xs={12} marginLeft={2} justifyContent="center" alignItems="center">
                     <InputLabel htmlFor="homeType">Home Type</InputLabel>
                 </Grid>
-                <Select id="homeType" value={homeType} onChange={(e) => setHomeType(e.target.value)} fullWidth fullWidth>
+                <Select id="homeType" value={homeType} onChange={(e) => setHomeType(e.target.value)} fullWidth>
                     <MenuItem value="APARTMENT">APARTMENT</MenuItem>
                     <MenuItem value="HOUSE">HOUSE</MenuItem>
                     <MenuItem value="CONDO">CONDO</MenuItem>
@@ -114,11 +119,11 @@ const YourFormComponent = () => {
                 </div>
             </Grid>
             <Grid item xs={12} container justifyContent="center" alignItems="center">
-                <Button variant="contained" onClick={handleCreate} sx={{ width: '10%', margin:'10px' }}>Add Property</Button>
+                <Button variant="contained" onClick={handleUpdate} sx={{ width: '10%' , margin:'10px'}}>Update Property</Button>
                 <Button variant="contained" color='error' onClick={()=>{navigate(-1)}} sx={{ width: '10%', margin:'10px' }}>Back</Button>
             </Grid>
         </Grid>
     );
 };
 
-export default YourFormComponent;
+export default EditProperty;
