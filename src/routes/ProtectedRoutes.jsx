@@ -19,6 +19,7 @@ import AdminChangesPassword from "../components/adminChangesPassword/AdminChange
 import OwnerDashboard from "../components/ownerDashboard/OwnerDashboard"
 import OwnerDashboardProperties from "../components/ownerDashboardProperties/OwnerDashboardProperties"
 import AddProperty from "../components/addProperty/AddProperty"
+import EditProperty from "../editProperty/EditProperty"
 
 import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
@@ -73,7 +74,7 @@ const ProtectedRoutes = () => {
         <Route path="/owner-dashboard" element={viewOwnerPageAccess ? <OwnerDashboard /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
-
+        <Route path="/owner-dashboard/edit-property/:id" element= {<EditProperty />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

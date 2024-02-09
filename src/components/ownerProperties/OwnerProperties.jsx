@@ -2,6 +2,9 @@ import React from 'react';
 import UserOptions from '../userOptions/userOptions';
 import PropertyCard from '../cards/PropertyCard';
 import { Button } from '@mui/material';
+import { handleBreakpoints } from '@mui/system';
+import { Create } from '@mui/icons-material';
+import CreatePropertyButtons from '../buttonComponent/CreatePropertyButtons';
 
 const OwnerProperties = (props) => {
 
@@ -24,10 +27,7 @@ const propertyItems = properties.map((property, index) => {
                 area={property.area}
                 fetchData={fetchData}
             />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button variant="contained" color="primary" style={{ margin: "10px" }}>Edit</Button>
-                <Button variant="contained" color="error" style={{ margin: "10px" }}>Delete</Button>
-            </div>
+            <CreatePropertyButtons property={property} />
         </div>
     )
 });
