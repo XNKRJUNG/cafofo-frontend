@@ -40,8 +40,15 @@ const Properties = () => {
             Authorization: `Bearer ${token}`
           }
         })
-        setProps(response.data)
-        console.log("Result" + response.data)
+        const propertiesWithImages = response?.data.map((property, index) => {
+          // Find the corresponding dummy data image by matching IDs
+          property.image = dummyPropertiesData[index].images
+          return property
+        })
+        // setProperties(propertiesWithImages);
+        // setProps(response.data)
+        setProps(propertiesWithImages)
+        console.log("Resulttt" + propertiesWithImages)
       } catch (error) {
         console.error(error)
       }
@@ -49,6 +56,8 @@ const Properties = () => {
 
     fetchData()
   }, [param.dealType])
+
+  console.log(props)
 
   const handleSearch = filteredData => {
     setProps(filteredData)
