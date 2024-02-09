@@ -14,21 +14,21 @@ const AdminDashboard = () => {
         },
     ]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const token = sessionStorage.getItem("token");
-                const response = await axios.get("http://localhost:8080/api/v1/admin/users", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setUsers(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    const fetchData = async () => {
+        try {
+            const token = sessionStorage.getItem("token");
+            const response = await axios.get("http://localhost:8080/api/v1/admin/users", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setUsers(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
                 <Sidebar />
             </div>
             <div>
-                <UsersOptions users={users} />
+                <UsersOptions users={users} fetchData ={fetchData} />
             </div>
         </div>
     );

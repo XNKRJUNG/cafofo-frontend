@@ -57,7 +57,7 @@ console.log("Properties <<>>>"+ propertyDetail)
 // }, [param.dealType]);
 
 const handleSearch = (filteredData) => {
-  setProps(filteredData);
+  setPropertyDetail(filteredData);
 };
 
   return (
