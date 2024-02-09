@@ -12,6 +12,9 @@ import AdminDashoardUsers from "../pages/adminDashoardUsers/AdminDashoardUsers"
 import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
 import AdminChangesPassword from "../components/adminChangesPassword/AdminChangesPassword"
+import OwnerDashboard from "../components/ownerDashboard/OwnerDashboard"
+import OwnerDashboardProperties from "../components/ownerDashboardProperties/OwnerDashboardProperties"
+import AddProperty from "../components/addProperty/AddProperty"
 
 const ProtectedRoutes = () => {
   return (
@@ -30,6 +33,9 @@ const ProtectedRoutes = () => {
         <Route path="/admin-dashboard" element= {<AdminDashoard />} />
         <Route path="/admin-dashboard/users" element= {<AdminDashoardUsers/>} />
         <Route path="/admin-dashboard/users/:id/reset-password" element= {<AdminChangesPassword/>} />
+        <Route path="/owner-dashboard" element= {<OwnerDashboard />} />
+        <Route path="/owner-dashboard/properties" element= {<OwnerDashboardProperties />} />
+        <Route path="/owner-dashboard/properties/add-new-property" element= {<AddProperty />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
