@@ -98,10 +98,8 @@ export default function Navbar() {
 
                 <StyledButton onClick={() => navigate("/buy/FOR_SALE")}>Buy</StyledButton>
                 <StyledButton onClick={() => navigate("/rent/FOR_RENT")}>Rent</StyledButton>
-                <StyledButton onClick={() => navigate("/sold/SOLD")}>Sell</StyledButton>
               </>
             )}
-            {role === "CUSTOMER" && <StyledButton onClick={() => navigate("/sell")}>Sell</StyledButton>}
           </NavSection>
           <Logo src={logo} alt="Logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }} />
           <NavSection>
