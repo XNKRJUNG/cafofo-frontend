@@ -22,7 +22,7 @@ const ProtectedRoutes = () => {
         <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="/buy" element={<Properties />} />
         <Route path="/rent" element={<Properties />} />
-        <Route path="/properties/1" element={<PropertyDetails />} />
+        <Route path="/properties/:id" element={<PropertyDetails />} />
         <Route path="/users/1/favroites" element={<FavoritesPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
