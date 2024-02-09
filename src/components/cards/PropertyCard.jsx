@@ -13,6 +13,7 @@ const CustomCard = styled(Card)({
 })
 
 const PropertyCard = props => {
+
   const navigate = useNavigate()
   const { id, images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
 
@@ -27,6 +28,7 @@ const PropertyCard = props => {
   return (
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
+
         <CardActionArea onClick={()=>navigate(`/properties/${id}`)}>
         {images && images.length > 0 && (          
             
@@ -34,7 +36,6 @@ const PropertyCard = props => {
           )
           }    
           
-          <CardMedia component="img" height="185"  alt={propertyName} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "bold" }}>
               ${new Intl.NumberFormat("en-US").format(price)}
@@ -80,3 +81,4 @@ const PropertyCard = props => {
 }
 
 export default PropertyCard
+
