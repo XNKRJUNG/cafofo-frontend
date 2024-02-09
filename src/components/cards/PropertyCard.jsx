@@ -12,8 +12,7 @@ const CustomCard = styled(Card)({
 })
 
 const PropertyCard = props => {
-  const { images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
-
+ const { images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
   // To Favorite the property
   const [isFavorited, setIsFavorited] = useState(false)
 
@@ -25,7 +24,9 @@ const PropertyCard = props => {
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
         <CardActionArea>
-          <CardMedia component="img" height="185" image={images[0]} alt={propertyName} />
+        {images && images.length > 0 && (
+            <CardMedia component="img" image={images[0]} height="185"  alt={propertyName} />
+          )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "bold" }}>
               ${new Intl.NumberFormat("en-US").format(price)}
@@ -70,3 +71,4 @@ const PropertyCard = props => {
 }
 
 export default PropertyCard
+
