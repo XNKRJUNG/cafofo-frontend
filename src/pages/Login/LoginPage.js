@@ -36,10 +36,7 @@ const LoginPage = () => {
       .post("http://localhost:8080/api/v1/auth/authenticate", { email, password })
       .then(response => {
         sessionStorage.setItem("token", response.data.token)
-        console.log(response.data.token)
         sessionStorage.setItem("emailName", email)
-        sessionStorage.setItem("userId", response.data.userId)
-        sessionStorage.setItem("role", response.data.role)
         // Dispatch setUser action
         dispatch(setUser({ email: email, id: response.data.userId, role: response.data.role, isLoggedIn: true }))
         navigate("/")
