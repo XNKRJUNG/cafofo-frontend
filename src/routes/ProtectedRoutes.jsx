@@ -63,7 +63,7 @@ const ProtectedRoutes = () => {
         <Route path="/properties" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
         <Route path="/properties/1" element={viewBuyRentPageAccess ? <PropertyDetails /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
 
-        <Route path="/users/1/favroites" element={viewCustomerPageAccess ? <FavoritesPage /> : <Navigate to="/unauthorized" />} />
+        <Route path="/users/1/favorites" element={viewCustomerPageAccess ? <FavoritesPage /> : <Navigate to="/unauthorized" />} />
         <Route path="/users/1/view-offer-list" element={viewCustomerPageAccess ? <CustViewOffer /> : <Navigate to="/unauthorized" />} />
 
         <Route path="/admin-dashboard" element={viewAdminPageAccess ? <AdminDashoard /> : <Navigate to="/unauthorized" />} />
