@@ -62,7 +62,7 @@ const ProtectedRoutes = () => {
         <Route path="/rent" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
 
         <Route path="/properties" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
-        <Route path="/properties/1" element={viewBuyRentPageAccess ? <PropertyDetails /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/properties/:id" element={viewBuyRentPageAccess ? <PropertyDetails /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
 
         <Route path="/users/1/favorites" element={viewCustomerPageAccess ? <FavoritesPage /> : <Navigate to="/unauthorized" />} />
         <Route path="/users/1/view-offer-list" element={viewCustomerPageAccess ? <CustViewOffer /> : <Navigate to="/unauthorized" />} />
@@ -75,6 +75,7 @@ const ProtectedRoutes = () => {
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/edit-property/:id" element= {<EditProperty />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
