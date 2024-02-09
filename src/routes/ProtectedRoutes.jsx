@@ -75,10 +75,11 @@ const ProtectedRoutes = () => {
         <Route path="/owner-dashboard" element={viewOwnerPageAccess ? <OwnerDashboard /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
-        <Route path="/owner-dashboard/edit-property/:id" element= {<EditProperty />} />
-        
+        <Route path="/owner-dashboard/edit-property/:id" element={<EditProperty />} />
+
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }

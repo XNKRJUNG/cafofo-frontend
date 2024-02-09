@@ -13,29 +13,23 @@ const CustomCard = styled(Card)({
 })
 
 const PropertyCard = props => {
-
   const navigate = useNavigate()
   const { id, images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
+  console.log(props)
 
   // To Favorite the property
   const [isFavorited, setIsFavorited] = useState(false)
 
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited)
-  }  
-   
+  }
 
   return (
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
+        <CardActionArea onClick={() => navigate(`/properties/${id}`)}>
+          {images && images.length > 0 && <CardMedia component="img" image={images[0]} height="185" alt={propertyName} />}
 
-        <CardActionArea onClick={()=>navigate(`/properties/${id}`)}>
-        {images && images.length > 0 && (          
-            
-            <CardMedia component="img" image={images[0].path} height="185"  alt={propertyName} />
-          )
-          }    
-          
           <CardContent>
             <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: "bold" }}>
               ${new Intl.NumberFormat("en-US").format(price)}
@@ -47,8 +41,7 @@ const PropertyCard = props => {
               <span style={{ fontWeight: "bold" }}>{numberOfBed}</span> bds | <span style={{ fontWeight: "bold" }}>{numberOfBathroom}</span> ba | <span style={{ fontWeight: "bold" }}>{area}</span> sqft
             </Typography>
             <Typography variant="body2" color="text.secondary">
-               {props.nummber} {props.street} {props.city}{props.state}{props.country} {props.zip}
-               
+              {address.nummber} {address.street} {address.city} {address.state} {address.country} {address.zip}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -81,4 +74,3 @@ const PropertyCard = props => {
 }
 
 export default PropertyCard
-
