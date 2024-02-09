@@ -1,41 +1,79 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import React from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import useAuth from "../features/hooks/useAuth"
+
 import Homepage from "../pages/Home/HomePage"
 import Properties from "../pages/Properties/Properties"
 import LoginPage from "../pages/Login/LoginPage"
 import RegisterPage from "../pages/Register/RegisterPage"
 import ForgotPasswordPage from "../pages/FogotPassword/ForgotPasswordPage"
 import PropertyDetails from "../pages/Properties/PropertyDetails"
+
 import FavoritesPage from "../pages/favroite/FavoritesPage"
-import ErrorPage from "../pages/Error/ErrorPage"
+import CustViewOffer from "../pages/customerOfferList/CustViewOffer"
+
 import AdminDashoard from "../pages/adminDashboard/AdminDashboard"
 import AdminDashoardUsers from "../pages/adminDashoardUsers/AdminDashoardUsers"
-import Navbar from "../components/navbar/Navbar"
-import Footer from "../components/footer/Footer"
 import AdminChangesPassword from "../components/adminChangesPassword/AdminChangesPassword"
+
 import OwnerDashboard from "../components/ownerDashboard/OwnerDashboard"
 import OwnerDashboardProperties from "../components/ownerDashboardProperties/OwnerDashboardProperties"
 import AddProperty from "../components/addProperty/AddProperty"
 
+import Navbar from "../components/navbar/Navbar"
+import Footer from "../components/footer/Footer"
+
+import ErrorPage from "../pages/Error/ErrorPage"
+
 const ProtectedRoutes = () => {
+  const { role, isLoggedIn } = useAuth()
+
+  const viewBuyRentPageAccess = !isLoggedIn || (isLoggedIn && role === "CUSTOMER")
+  const viewCustomerPageAccess = isLoggedIn && role === "CUSTOMER"
+  const viewOwnerPageAccess = isLoggedIn && role === "OWNER"
+  const viewAdminPageAccess = isLoggedIn && role === "ADMIN"
+
+  const RootComponent = () => {
+    if (!isLoggedIn) return <Homepage /> // Assuming you have a different homepage for unauthorized users
+    switch (role) {
+      case "CUSTOMER":
+        return <Homepage />
+      case "OWNER":
+        return <OwnerDashboard />
+      case "ADMIN":
+        return <AdminDashoard />
+      default:
+        return <Homepage />
+    }
+  }
+
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/properties" element={<Properties />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
-        <Route path="/buy" element={<Properties />} />
-        <Route path="/rent" element={<Properties />} />
-        <Route path="/properties/1" element={<PropertyDetails />} />
-        <Route path="/users/1/favroites" element={<FavoritesPage />} />
-        <Route path="/admin-dashboard" element= {<AdminDashoard />} />
-        <Route path="/admin-dashboard/users" element= {<AdminDashoardUsers/>} />
-        <Route path="/admin-dashboard/users/:id/reset-password" element= {<AdminChangesPassword/>} />
-        <Route path="/owner-dashboard" element= {<OwnerDashboard />} />
-        <Route path="/owner-dashboard/properties" element= {<OwnerDashboardProperties />} />
-        <Route path="/owner-dashboard/properties/add-new-property" element= {<AddProperty />} />
+        <Route path="/" element={<RootComponent />} />
+
+        <Route path="/login" element={!isLoggedIn ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/register" element={!isLoggedIn ? <RegisterPage /> : <Navigate to="/" />} />
+        <Route path="/forgotPassword" element={!isLoggedIn ? <ForgotPasswordPage /> : <Navigate to="/" />} />
+
+        <Route path="/buy" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/rent" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+
+        <Route path="/properties" element={viewBuyRentPageAccess ? <Properties /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+        <Route path="/properties/1" element={viewBuyRentPageAccess ? <PropertyDetails /> : isLoggedIn ? <Navigate to="/unauthorized" /> : <LoginPage />} />
+
+        <Route path="/users/1/favroites" element={viewCustomerPageAccess ? <FavoritesPage /> : <Navigate to="/unauthorized" />} />
+        <Route path="/users/1/view-offer-list" element={viewCustomerPageAccess ? <CustViewOffer /> : <Navigate to="/unauthorized" />} />
+
+        <Route path="/admin-dashboard" element={viewAdminPageAccess ? <AdminDashoard /> : <Navigate to="/unauthorized" />} />
+        <Route path="/admin-dashboard/users" element={viewAdminPageAccess ? <AdminDashoardUsers /> : <Navigate to="/unauthorized" />} />
+        <Route path="/admin-dashboard/users/:id/reset-password" element={viewAdminPageAccess ? <AdminChangesPassword /> : <Navigate to="/unauthorized" />} />
+
+        <Route path="/owner-dashboard" element={viewOwnerPageAccess ? <OwnerDashboard /> : <Navigate to="/unauthorized" />} />
+        <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
+        <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
