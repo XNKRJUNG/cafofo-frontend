@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
 import { useNavigate } from "react-router-dom"
-import { Add, OtherHouses, PlusOne } from "@mui/icons-material"
+import { Add, Money, OtherHouses, PlusOne } from "@mui/icons-material"
 
 const drawerWidth = 240
 
@@ -26,6 +26,11 @@ const OwnerSidebar = () => {
       text: "Add New Property",
       icon: <Add/>,
       onClick: () => navigate("/owner-dashboard/properties/add-new-property")
+    },
+    {
+      text: "Offers",
+      icon: <Money/>,
+      onClick: () => navigate("/owner-dashboard/offers")
     }
   ]
 
