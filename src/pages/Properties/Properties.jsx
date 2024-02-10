@@ -40,6 +40,8 @@ const Properties = () => {
             Authorization: `Bearer ${token}`
           }
         })
+
+        console.log("response", response.data)
         const propertiesWithImages = response?.data.map((property, index) => {
           // Find the corresponding dummy data image by matching IDs
           property.image = dummyPropertiesData[index].images
@@ -72,7 +74,7 @@ const Properties = () => {
           {/* {propertyDetail.map(p => (            
             <PropertyCard id={p.id} key={p.id} images={p.images} address={p.address} price={p.price} numberOfBed={p.numberOfBed} numberOfBathroom={p.numberOfBathroom} homeType={p.homeType} dealType={p.dealType} area={p.area} /> */}
           {props.map(p => (
-            <PropertyCard key={p.id} id={p.id} images={p.image} address={p.address} price={p.price} numberOfBed={p.numberOfBed} numberOfBathroom={p.numberOfBathroom} homeType={p.homeType} dealType={p.dealType} area={p.area} />
+            <PropertyCard key={p.id} id={p.id} images={p.image} address={p.address} price={p.price} numberOfBed={p.numberOfBed} numberOfBathRoom={p.numberOfBathRoom} homeType={p.homeType} dealType={p.dealType} area={p.area} />
           ))}
         </Grid>
       </Container>

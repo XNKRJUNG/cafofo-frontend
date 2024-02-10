@@ -21,7 +21,7 @@ const MakeOffer = props => {
   const [isOfferMade, setIsOfferMade] = useState(false)
 
   const [buttonVariant, setButtonVariant] = useState("outlined")
-  const [offerId, setOfferId] = useState([])
+  const [offerId, setOfferId] = useState("")
 
   const token = sessionStorage.getItem("token")
 
@@ -69,32 +69,34 @@ const MakeOffer = props => {
   console.log("<<<ID>>>>:" + props.id + "price" + price + "user ID" + userId)
 
   const handleMakeOffer = async () => {
-    setIsOfferMade(true)
-    if (isOfferMade) {
-      console.log("IN the handleMakeOffer")
-      console.log(`http://localhost:8080/api/v1/customers/${userId}/offers`)
-      try {
-        console.log("Test;:::::::::::")
+    setIsOfferMade(true) // This will trigger the component to re-render
 
-        const response = await axios.post(
-          `http://localhost:8080/api/v1/customers/${userId}/offers`,
-          {
-            propertyId: props.id,
-            offerPrice: parseFloat(price) // Convert price to a number, assuming it's a string
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+    // No need to check isOfferMade here since you're setting it to true above
+    console.log("IN the handleMakeOffer")
+    console.log(`http://localhost:8080/api/v1/customers/${userId}/offers`)
+    try {
+      console.log("Test;:::::::::::")
+
+      const response = await axios.post(
+        `http://localhost:8080/api/v1/customers/${userId}/offers`,
+        {
+          propertyId: props.id,
+          offerPrice: parseFloat(price) // Assuming 'price' is a state or prop holding the offer price
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // Assuming 'token' is correctly defined elsewhere in your component
           }
-        )
+        }
+      )
 
-        setOfferId(response.data)
-      } catch (error) {
-        console.error("Error saving offer:", error)
-      }
+      setOfferId(response.data) // Assuming you're storing the response data for later use
+    } catch (error) {
+      console.error("Error saving offer:", error)
     }
   }
+
+  console.log(offerId)
 
   // } else {
   //     // If isOfferMade is false, make a PATCH or DELETE request based on the condition

@@ -4,26 +4,28 @@ import { dummyPropertiesData } from "../../dummy/FavPropertiesDummy"
 import OfferMadeCard from "../../components/cards/OfferMadeCard"
 import { useParams } from "react-router-dom"
 import axios from "axios"
+import { useSelector } from "react-redux"
 
 const CustViewOffer = () => {
-  
-  const [offersCard, setOffersCard] = useState([]);
-  const token= sessionStorage.getItem("token");
-  const userId= sessionStorage.getItem("userId");
+  const { userId } = useSelector(state => state.auth)
+
+  const [offersCard, setOffersCard] = useState([])
+  const token = sessionStorage.getItem("token")
 
   useEffect(() => {
     if (userId) {
       axios
-        .get("http://localhost:8080/api/v1/customers/"+userId+"/offers",
-        {headers:{
-          Authorization: `Bearer ${token}`,
-        },})
-        .then((response) => {
-          setOffersCard(response.data);
+        .get("http://localhost:8080/api/v1/customers/" + userId + "/offers", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         })
-        .catch((err) => console.log(err.message));
+        .then(response => {
+          setOffersCard(response.data)
+        })
+        .catch(err => console.log(err.message))
     }
-  }, [userId]);
+  }, [userId])
 
   return (
     <>

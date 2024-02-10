@@ -14,11 +14,11 @@ const CustomCard = styled(Card)({
 
 const OfferMadeCard = props => {
   const navigate = useNavigate()
-  const {property, offerPrice }=props 
-  const {propertyName,address, price, images}=property
+  const { property, offerPrice } = props
+  const { propertyName, address, price, images } = property
 
   // To Favorite the property
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false)
 
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited)
@@ -28,9 +28,7 @@ const OfferMadeCard = props => {
     <Grid item xs={12} sm={6} md={3}>
       <CustomCard>
         <CardActionArea>
-        {images && images.length > 0 && (
-            <CardMedia component="img" image={images[0]} height="185"  alt={propertyName} />
-          )}
+          {images && images.length > 0 && <CardMedia component="img" image={images[0]} height="185" alt={propertyName} />}
           <CardContent>
             <Typography variant="body3" color="text.secondary">
               Your Offer:
@@ -48,36 +46,13 @@ const OfferMadeCard = props => {
               {propertyName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {address.street}, {address.city}, {address.state}, {address.zipCode}
+              {address.street}, {address.city}, {address.state}, {address.zipCode}
             </Typography>
             <Button variant="contained" sx={{ width: "100%", marginTop: 1 }} onClick={() => navigate("/properties/1")}>
               View Details
             </Button>
           </CardContent>
         </CardActionArea>
-        <Box position="absolute" top={1} right={1}>
-          <IconButton
-            onClick={toggleFavorite}
-            aria-label="add to favorites"
-            sx={{
-              "&:hover": {
-                backgroundColor: "transparent"
-              }
-            }}
-          >
-            {isFavorited ? (
-              <FavoriteIcon color="error" sx={{ stroke: "grey", strokeWidth: 1 }} />
-            ) : (
-              <FavoriteBorderIcon
-                sx={{
-                  color: "#ffffff",
-                  stroke: "grey",
-                  strokeWidth: 1
-                }}
-              />
-            )}
-          </IconButton>
-        </Box>
       </CustomCard>
     </Grid>
   )

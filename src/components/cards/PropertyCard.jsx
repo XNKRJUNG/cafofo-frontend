@@ -14,7 +14,7 @@ const CustomCard = styled(Card)({
 
 const PropertyCard = props => {
   const navigate = useNavigate()
-  const { id, images, propertyName, address, price, numberOfBed, numberOfBathroom, homeType, dealType, area } = props
+  const { id, images, propertyName, address, price, numberOfBed, numberOfBathRoom, homeType, dealType, area } = props
   console.log(props)
 
   // To Favorite the property
@@ -38,7 +38,7 @@ const PropertyCard = props => {
               {homeType} {dealType}
             </Typography>
             <Typography variant="body1" color="text.primary">
-              <span style={{ fontWeight: "bold" }}>{numberOfBed}</span> bds | <span style={{ fontWeight: "bold" }}>{numberOfBathroom}</span> ba | <span style={{ fontWeight: "bold" }}>{area}</span> sqft
+              <span style={{ fontWeight: "bold" }}>{numberOfBed}</span> bds | <span style={{ fontWeight: "bold" }}>{numberOfBathRoom}</span> ba | <span style={{ fontWeight: "bold" }}>{area}</span> sqft
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {address.nummber} {address.street} {address.city} {address.state} {address.country} {address.zip}
