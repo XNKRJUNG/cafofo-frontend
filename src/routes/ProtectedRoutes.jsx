@@ -26,6 +26,7 @@ import Footer from "../components/footer/Footer"
 
 import ErrorPage from "../pages/Error/ErrorPage"
 import AdminDashboardProperties from "../pages/adminDashsboardProperties/AdminDashboardProperties"
+import OnwerDashboardOffers from "../pages/ownerDashboardOffers/OwnerDashboardOffers"
 
 const ProtectedRoutes = () => {
   const { role, isLoggedIn } = useAuth()
@@ -77,7 +78,8 @@ const ProtectedRoutes = () => {
         <Route path="/owner-dashboard" element={viewOwnerPageAccess ? <OwnerDashboard /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties" element={viewOwnerPageAccess ? <OwnerDashboardProperties /> : <Navigate to="/unauthorized" />} />
         <Route path="/owner-dashboard/properties/add-new-property" element={viewOwnerPageAccess ? <AddProperty /> : <Navigate to="/unauthorized" />} />
-        <Route path="/owner-dashboard/edit-property/:id" element={<EditProperty />} />
+        <Route path="/owner-dashboard/edit-property/:id" element={viewOwnerPageAccess ? <EditProperty /> : <Navigate to="/unauthorized" />} />
+        <Route path="/owner-dashboard/offers" element={<OnwerDashboardOffers />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
